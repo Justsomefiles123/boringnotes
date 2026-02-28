@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boring Notes</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Spoon Quest</title>
 </head>
 <body>
-    <header>
-        <h1>Boring Notes</h1>
-    </header>
-    
-    <section class="screen-gate">
-        <h2>Home</h2>
-        <p>Welcome to the boring notes app. Here you can find some boring notes.</p>
-    </section>
-    <!-- HOME / MENU -->
-    <footer>
-        <p>Footer content here.</p>
-    </footer>
+    <div id="app">
+        <section id="screen-start">
+            <h1>Welcome to Spoon Quest!</h1>
+            <button id="start-game">Start Game</button>
+        </section>
+        <section id="screen-gate">
+            <h2>Choose Your Path</h2>
+            <button id="path-one">Path One</button>
+            <button id="path-two">Path Two</button>
+        </section>
+        <section id="screen-home">
+            <h2>Home</h2>
+            <p>Your adventure begins here.</p>
+        </section>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
