@@ -1,29 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spoon Quest</title>
+  <meta name="description" content="A cute retro flirt-quest prompt generator (WhatsApp-only). No uploads. No storage." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <div class="container">
-        <section id="screen-start">
-            <h1>Start Screen</h1>
-            <button id="start-btn">Start</button>
-        </section>
-        <section id="screen-gate">
-            <h2>Gate Screen</h2>
-            <p>This is the gate screen.</p>
-            <button id="gate-btn">Go to Home</button>
-        </section>
-        <!-- Removed the orphaned </section> tag here -->
-        <section id="screen-home">
-            <h2>Home Screen</h2>
-            <p>Welcome to the home screen.</p>
-            <button id="home-btn">Home</button>
-        </section>
-    </div>
-    <script src="script.js"></script>
+  <div id="app" class="app" aria-live="polite">
+
+    <!-- START SCREEN -->
+    <section id="screen-start" class="screen active" role="region" aria-label="Start screen">
+      <div class="crt">
+        <div class="title">
+          <div class="pixel-heart" id="heart" title="(don't tap this too much…)"></div>
+          <h1>SPOON QUEST</h1>
+          <p class="sub">You have a fork. You have a knife. Find the spoon.</p>
+        </div>
+
+        <div class="start-box">
+          <button class="btn btn-primary" id="btnStart">PRESS START</button>
+          <p class="tiny blink">no uploads • no storage • WhatsApp-only</p>
+        </div>
+      </div>
+    
+    <!-- GATE SCREEN -->
+    <section id="screen-gate" class="screen" role="region" aria-label="Passphrase gate">
+      <div class="crt">
+        <div class="title">
+          <h1>ENTER PASSCODE</h1>
+          <p class="sub">Hint: the thing you were looking for.</p>
+        </div>
+        <div class="start-box">
+          <label class="tiny" for="passcode">TYPE IT:</label>
+          <input id="passcode" class="input" type="password" inputmode="text" autocomplete="off" placeholder="•••••" />
+          <button class="btn btn-primary" id="btnUnlock">UNLOCK</button>
+          <p class="tiny dim" id="gateMsg"></p>
+          <p class="tiny blink">nothing is stored • just a vibe check</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOME / MENU -->
+    <section id="screen-home" class="screen" role="region" aria-label="Home screen">
+      <header class="topbar">
+        <div class="brand">
+          <span class="badge">v1.0</span>
+          <span class="brand-name">Spoon Quest</span>
+        </div>
+        <div class="top-actions">
+          <button class="btn btn-ghost" id="btnHow">HOW IT WORKS</button>
+          <button class="btn btn-ghost" id="btnSound" aria-pressed="true">SOUND: ON</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="panel">
+          <h2>Choose your quest</h2>
+          <p class="hint">Pick a vibe. Get a prompt. Send via WhatsApp.</p>
+
+          <div class="grid">
+            <button class="card" data-mode="suggestive">
+              <span class="card-title">SUGGESTIVE</span>
+              <span class="card-sub">hint +2</span>
+            </button>
+
+            <button class="card" data-mode="provocative">
+              <span class="card-title">PROVOCATIVE</span>
+              <span class="card-sub">charm spell</span>
+            </button>
+
+            <button class="card" data-mode="aggressive">
+              <span class="card-title">AGGRESSIVE</span>
+              <span class="card-sub">boss battle</span>
+            </button>
+
+            <button class="card" data-mode="windowopen">
+              <span class="card-title">WINDOW OPEN 👀</span>
+              <span class="card-sub">120 seconds</span>
+            </button>
+
+            <button class="card" data-mode="edible">
+              <span class="card-title">EDIBLE METER 🍯</span>
+              <span class="card-sub">return to WhatsApp</span>
+            </button>
+
+            <button class="card" data-mode="quests">
+              <span class="card-title">QUEST LOG</span>
+              <span class="card-sub">expand later</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel panel-right">
+          <h2>Prompt</h2>
+          <div class="textbox" id="textbox">
+            <p class="mono" id="promptText">> Press a mode to generate a prompt…</p>
+            <p class="mono dim" id="promptMeta">> (Nothing is saved.)</p>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-secondary" id="btnAgain" disabled>ROLL AGAIN</button>
+            <button class="btn btn-primary" id="btnWhatsApp" disabled>SEND VIA WHATSAPP</button>
+          </div>
+
+          <div class="fineprint" id="fineprint">
+            <p><strong>Privacy:</strong> this app stores nothing, uploads nothing, and doesn't track you.</p>
+          </div>
+        </div>
+      </main>
+
+      <dialog id="modal" class="modal">
+        <form method="dialog" class="modal-card">
+          <h3 id="modalTitle">How it works</h3>
+          <div class="modal-body" id="modalBody">
+            <p>Pick a mode → get a prompt → send the photo/prompt reply via WhatsApp.</p>
+            <p>No images are uploaded here. Nothing is stored.</p>
+            <p>Tip: use <em>WINDOW OPEN</em> only when you actually have privacy 👀</p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" value="ok">OK</button>
+          </div>
+        </form>
+      </dialog>
+
+      <footer class="footer">
+        <span class="dim">Easter eggs: try tapping the heart… carefully.</span>
+      </footer>
+    </section>
+
+  </div>
+
+  <script src="prompts.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
