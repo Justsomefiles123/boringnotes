@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Spoon Quest</title>
 </head>
 <body>
-    <div id="app">
+    <div class="container">
         <section id="screen-start">
-            <h1>Welcome to Spoon Quest!</h1>
-            <button id="start-game">Start Game</button>
+            <h1>Start Screen</h1>
+            <button id="start-btn">Start</button>
         </section>
         <section id="screen-gate">
-            <h2>Choose Your Path</h2>
-            <button id="path-one">Path One</button>
-            <button id="path-two">Path Two</button>
+            <h2>Gate Screen</h2>
+            <p>This is the gate screen.</p>
+            <button id="gate-btn">Go to Home</button>
         </section>
+        <!-- Removed the orphaned </section> tag here -->
         <section id="screen-home">
-            <h2>Home</h2>
-            <p>Your adventure begins here.</p>
+            <h2>Home Screen</h2>
+            <p>Welcome to the home screen.</p>
+            <button id="home-btn">Home</button>
         </section>
     </div>
     <script src="script.js"></script>
