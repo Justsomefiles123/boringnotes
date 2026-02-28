@@ -174,3 +174,13 @@ h1{ margin: 14px 0 12px; font-size: 22px; color: var(--teal); text-shadow: 0 0 1
   outline: none;
   border-color: rgba(38,230,211,.45);
 }
+/* Ensure START button is always clickable */
+#btnStart, #btnUnlock {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.crt, .screen, .start-box {
+  pointer-events: auto;
+}
